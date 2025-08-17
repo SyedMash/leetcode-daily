@@ -45,32 +45,19 @@
 def roman_to_int(s: str) -> int:
     roman_values = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
 
-    # possibility for I before V or X
-    for i in range(len(s) - 1):
-        if s[i] == "I" and s[i + 1] == "V":
-            roman_values["V"] -= roman_values["I"]
-            roman_values["I"] = 0
-        elif s[i] == "I" and s[i + 1] == "X":
-            roman_values["X"] -= roman_values["I"]
-            roman_values["I"] = 0
-        elif s[i] == "X" and s[i + 1] == "L":
-            roman_values["L"] -= roman_values["X"]
-            roman_values["X"] = 0
-        elif s[i] == "X" and s[i + 1] == "C":
-            roman_values["C"] -= roman_values["X"]
-            roman_values["X"] = 0
-        elif s[i] == "C" and s[i + 1] == "D":
-            roman_values["D"] -= roman_values["C"]
-            roman_values["D"] = 0
-        elif s[i] == "C" and s[i + 1] == "M":
-            roman_values["M"] -= roman_values["C"]
-            roman_values["D"] = 0
+    total = 0
+    i = 0
 
-    sum = 0
-    for i in range(len(s)):
-        sum = sum + roman_values[s[i]]
+    while i < len(s):
+        if i + 1 < len(s) and roman_values[s[i]] < roman_values[s[i + 1]]:
+            total += roman_values[s[i + 1]] - roman_values[s[i]]
+            i += 2
+        else:
+            total += roman_values[s[i]]
+            i += 1
 
-    print(sum)
+    print(total)
+    return total
 
 
-roman_to_int(s="CM")
+roman_to_int(s="MCMXCIV")
