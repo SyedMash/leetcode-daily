@@ -47,4 +47,4 @@ def plus_one(digits: list[int]) -> list[int]:
     return [1] + digits
 
 
-print(plus_one(digits=[4, 3, 3, 9]))
+print(plus_one(digits=[9]))
