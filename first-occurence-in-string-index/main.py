@@ -21,11 +21,10 @@
 
 
 def first_occurrence_in_string_index(haystack: str, needle: str) -> int:
-    if needle.lower() not in haystack.lower():
-        print("Needle not in haystack")
-        return -1
-    else:
-        pass
+    for i in range(len(haystack) - len(needle) + 1):
+        if haystack[i : i + len(needle)] == needle:
+            return i
+    return -1
 
 
-first_occurrence_in_string_index(haystack="leetcode", needle="leet")
+print(first_occurrence_in_string_index(haystack="sadbutsad", needle="sad"))
